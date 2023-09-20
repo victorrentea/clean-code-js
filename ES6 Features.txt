@@ -1,0 +1,20 @@
+ES6 Features
+
+- The let keyword
+- The const keyword
+Arrow Functions
+The ... Operator: Spread and Rest
+- For/of
+- Map Objects
+Set Objects
+- Classes
+- Promises
+- Symbol
+- Default Parameters
+String.includes() / .startsWith() / .endsWith()
+Array.from()
+Array keys()
+Array find()
+Array findIndex()
+Object entries
+JavaScript Modules
