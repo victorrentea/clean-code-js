@@ -2,14 +2,14 @@ export function statement(customer) {
     let totalPrice = 0;
     let frequentRenterPoints = 0;
     let result = `Rental Record for ${customer.name}\n`;
-    customer.rentals.forEach(rental => {
+    for (const rental of customer.rentals) {
         const price = calculatePrice(rental);
         frequentRenterPoints += calculateRenterPoints(rental);
 
         result += `\t${rental.movie.title}\t${price}\n`;
 
         totalPrice += price;
-    });
+    }
     // add footer lines
     result += `Amount owed is ${totalPrice}\n`;
     result += `You earned ${frequentRenterPoints} frequent renter points\n`;
