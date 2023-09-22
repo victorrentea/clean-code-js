@@ -32,15 +32,17 @@ function bossEnd(cr323, tasks, taskIds) {
     console.log("Logic8");
 }
 
-function bossLevel(tasks, cr323) {
-    let taskIds = bossStart(tasks);
-
-    console.log("Logic3");
+function betterName(tasks) {
     for (let task of tasks) {
         console.log("Starting " + task);
         task.started = true;
     }
-    bossEnd(cr323, tasks, taskIds);
+}
+
+function bossLevel(tasks, cr323) {
+    console.log("Logic3");
+    betterName(tasks);
+    bossEnd(cr323, tasks, bossStart(tasks));
 }
 
 function bossLevelNoFluff(tasks) {

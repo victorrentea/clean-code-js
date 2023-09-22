@@ -1,10 +1,20 @@
 function filterCarModels(criteria, models) {
-    const results = [];
-    for (let model of models) {
-        if (new Interval(model.startProductionYear, model.endProductionYear).intersects(new Interval(criteria.startYear, criteria.endYear))) {
-            results.push(model);
-        }
-    }
+    const criteriaYears = new Interval(criteria.startYear, criteria.endYear);
+
+    // const results = [];
+    // for (const model of models) {
+    //     if (model.productionYears.intersects(criteriaYears)) {
+    //         results.push(model);
+    //     }
+    // }
+
+    // FP is the way
+    const results = models.filter(model => model.productionYears.intersects(criteriaYears));
+
+    console.log(criteriaYears.end); // end attrib of the Interval is PUBLIC.
+    // can i make it private in ES6 ? NO.
+
+
     // More filtering logic
     return results;
 }
@@ -17,6 +27,7 @@ class Interval {
     constructor(start, end) {
         this.start = start;
         this.end = end;
+        // Object.freeze(this);
     }
     intersects(other) { // OOP : behavior NEXT to state!
         return this.start <= other.end && other.start <= this.end;
@@ -30,13 +41,13 @@ class CarSearchCriteria {
     }
 }
 class CarModel {
-    constructor(make, model, startProductionYear, endProductionYear) {
+    constructor(make, model, productionYears) {
         this.make = make;
         this.model = model;
-        this.startProductionYear = startProductionYear;
-        this.endProductionYear = endProductionYear;
+        this.productionYears = productionYears;
     }
 }
-const fordFocusMk2 = new CarModel("Ford", "Focus", 2012, 2016);
+
+const fordFocusMk2 = new CarModel("Ford", "Focus", new Interval(2012, 2016));
 console.log("results: " +filterCarModels(new CarSearchCriteria(2014, 2018), [fordFocusMk2]).length);
 console.log("results: " +filterCarModels(new CarSearchCriteria(2017, 2018), [fordFocusMk2]).length);

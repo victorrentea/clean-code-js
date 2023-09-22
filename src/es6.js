@@ -1,4 +1,3 @@
-
 let strings = ["a", "b", "c"];
 for (let string of strings) {
 // for (let string in strings) { // difference ?
@@ -9,3 +8,19 @@ for (let string of strings) {
 // const map = {{1,2}:"red"}
 
 
+function Obj() {
+    this.x = 1;
+    return {
+        f: function () { // "function" creates its own "this" scope, different than the host func
+            return this.x;
+        },
+        arrow: () => { // reuses this in the context it;s defined
+            return this.x;
+        }
+    };
+}
+
+let old = new Obj();
+console.log("function: " + old.f());
+console.log("Arrow: " + old.arrow());
+console.log("x is 'private':" + old.x);
