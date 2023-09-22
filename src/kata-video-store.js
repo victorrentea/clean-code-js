@@ -7,6 +7,7 @@ export function statement(customer) {
         let movie = r.movie;
         var thisAmount = 0;
 
+
         // determine amount for each movie
         switch (movie.code) {
             case "regular":
