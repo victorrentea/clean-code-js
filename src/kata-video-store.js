@@ -1,22 +1,25 @@
-export function statement(customer) {
+// repeating a method call, problems:
+// 1) PERFORMANCE?????????? NO
+// 2) BUG if calculatePrice() side effected on rental
+// 3) BUG if it returns different value each time
+function totalPrice(customer) {
     let totalPrice = 0;
+    for (const rental of customer.rentals) {
+        totalPrice += calculatePrice(rental);
+    }
+    return totalPrice;
+}
+
+// if a function is PURE, then #2 and #3 are not possible
+export function statement(customer) {
     let result = `Rental Record for ${customer.name}\n`;
 
     const frequentRenterPoints = totalPoints(customer);
 
-    // for (const rental of customer.rentals) {
-    //     const price = calculatePrice(rental);
-    //     result += `\t${rental.movie.title}\t${price}\n`;
-    //     totalPrice += price;
-    // }
-    // 1) PERFORMANCE?????????? NO
-    // 2) BUG if calculatePrice() side effected on rental
-    // 3) BUG if it returns different value each time
-    // if a function is PURE, then #2 and #3 are not possible
     for (const rental of customer.rentals) {
         result += `\t${rental.movie.title}\t${calculatePrice(rental)}\n`;
-        totalPrice += calculatePrice(rental);
     }
+    const totalPrice = totalPrice(customer);
     // add footer lines
     result += `Amount owed is ${totalPrice}\n`;
     result += `You earned ${frequentRenterPoints} frequent renter points\n`;
