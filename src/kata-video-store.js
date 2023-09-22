@@ -4,10 +4,18 @@ export function statement(customer) {
 
     const frequentRenterPoints = totalPoints(customer);
 
+    // for (const rental of customer.rentals) {
+    //     const price = calculatePrice(rental);
+    //     result += `\t${rental.movie.title}\t${price}\n`;
+    //     totalPrice += price;
+    // }
+    // 1) PERFORMANCE?????????? NO
+    // 2) BUG if calculatePrice() side effected on rental
+    // 3) BUG if it returns different value each time
+    // if a function is PURE, then #2 and #3 are not possible
     for (const rental of customer.rentals) {
-        const price = calculatePrice(rental);
-        result += `\t${rental.movie.title}\t${price}\n`;
-        totalPrice += price;
+        result += `\t${rental.movie.title}\t${calculatePrice(rental)}\n`;
+        totalPrice += calculatePrice(rental);
     }
     // add footer lines
     result += `Amount owed is ${totalPrice}\n`;
