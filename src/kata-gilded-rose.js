@@ -76,12 +76,12 @@ const items = [
 ];
 
 const days = 20;
-const gildedRoseKata = new Shop(items);
+const kataGildedRose = new Shop(items);
 
 console.log("OMGHAI!");
 for (let day = 0; day < days; day++) {
     console.log(`\n-------- day ${day} --------`);
     console.log("name, sellIn, quality");
     items.forEach(item => console.log(`${item.name}, ${item.sellIn}, ${item.quality}`));
-    gildedRoseKata.updateQuality();
+    kataGildedRose.updateQuality();
 }

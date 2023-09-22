@@ -15,7 +15,7 @@ class Player {
     }
 }
 
-function TriviaKata() {
+function KataTrivia() {
     const players = [];
     this.players2 = players;
     const inPenaltyBox = new Array(6);
@@ -180,7 +180,7 @@ function TriviaKata() {
 
 let notAWinner = false;
 
-const game = new TriviaKata();
+const game = new KataTrivia();
 
 game.add('Chet');
 game.add('Pat');
