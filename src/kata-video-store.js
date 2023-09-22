@@ -5,8 +5,7 @@ export function statement(customer) {
     let result = `Rental Record for ${customer.name}\n`;
     for (let r of customer.rentals) {
         let movie = r.movie;
-        var thisAmount = 0;
-
+        let thisAmount = 0;
 
         // determine amount for each movie
         switch (movie.code) {
