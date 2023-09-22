@@ -11,6 +11,12 @@ function computeTotalPrice(customer) {
 }
 
 
+export const MovieType = { // ~ enum in TS
+    NEW_RELEASE: Symbol(),
+    REGULAR: Symbol(),
+    CHILDREN: Symbol()
+};
+
 
 // if a function is PURE, then #2 and #3 are not possible
 export function statement(customer) {
@@ -55,21 +61,21 @@ function calculateRenterPoints(rental) {
 // };
 
 function deservesBonus(rental) {
-    return rental.movie.code === "new" && rental.days >= 3;
+    return rental.movie.code === MovieType.NEW_RELEASE && rental.days >= 3;
 }
 
 
 function calculatePrice(rental) {
     let price = 0;
     switch (rental.movie.code) {
-        case "regular":
+        case MovieType.REGULAR:
             price += 2;
             if (rental.days > 2)
                 price += (rental.days - 2) * 1.5;
             return price;
-        case "new":
+        case MovieType.NEW_RELEASE:
             return rental.days * 3;
-        case "childrens":
+        case MovieType.CHILDREN:
             price += 1.5;
             if (rental.days > 3) {
                 price += (rental.days - 3) * 1.5;
@@ -79,7 +85,7 @@ function calculatePrice(rental) {
     }
 }
 
-
+// enum
 
 
 
