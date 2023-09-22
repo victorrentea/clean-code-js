@@ -7,6 +7,7 @@ describe("aa", () => {
             {
                 name: "martin",
                 rentals: [
+                    {movie: {title: "Memento", code: "elders"}, days: 6},
                     {movie: {title: "Star Wars", code: "new"}, days: 6},
                     {movie: {title: "Sofia", code: "childrens"}, days: 7},
                     {movie: {title: "Inception", code: "regular"}, days: 5}

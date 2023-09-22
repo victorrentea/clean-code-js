@@ -66,18 +66,17 @@ function calculatePrice(rental) {
             price += 2;
             if (rental.days > 2)
                 price += (rental.days - 2) * 1.5;
-            break;
+            return price;
         case "new":
-            price = rental.days * 3;
-            break;
+            return rental.days * 3;
         case "childrens":
             price += 1.5;
             if (rental.days > 3) {
                 price += (rental.days - 3) * 1.5;
             }
-            break;
+            return price;
+        default: throw new Error("unknown movie code: " + rental.movie.code);
     }
-    return price;
 }
 
 
