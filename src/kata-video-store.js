@@ -2,7 +2,7 @@
 // 1) PERFORMANCE?????????? NO
 // 2) BUG if calculatePrice() side effected on rental
 // 3) BUG if it returns different value each time
-function totalPrice(customer) {
+function computeTotalPrice(customer) {
     let totalPrice = 0;
     for (const rental of customer.rentals) {
         totalPrice += calculatePrice(rental);
@@ -19,7 +19,8 @@ export function statement(customer) {
     for (const rental of customer.rentals) {
         result += `\t${rental.movie.title}\t${calculatePrice(rental)}\n`;
     }
-    const totalPrice = totalPrice(customer);
+    const totalPrice = computeTotalPrice(customer);
+
     // add footer lines
     result += `Amount owed is ${totalPrice}\n`;
     result += `You earned ${frequentRenterPoints} frequent renter points\n`;
