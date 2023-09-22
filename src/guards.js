@@ -1,30 +1,27 @@
 const DEAD_PAY_AMOUNT = 1;
 
 function getPayAmount(marine, bonusPackage) {
-    let result;
-    if (marine != null && (bonusPackage.value > 100 || bonusPackage.value < 10)) {
-        if (!isDead(marine)) {
-            if (!marine.retired) {
-                if (marine.yearsService != null) {
-                    result = marine.yearsService * 100 + bonusPackage.value;
-                    if (!marine.awards.isEmpty()) {
-                        result += 1000;
-                    }
-                    if (marine.awards.size() >= 3) {
-                        result += 2000;
-                    }
-                    // HEAVY core logic here, business-rules ...
-                } else {
-                    throw "Any marine should have the years of service set";
-                }
-            } else result = retiredAmount();
-        } else {
-            result = DEAD_PAY_AMOUNT;
-        }
-    } else {
-        throw new IllegalArgumentException("Not applicable!");
+    if (!(marine != null && (bonusPackage.value > 100 || bonusPackage.value < 10))) {
+        throw "Not applicable!";
     }
-    return result; // TODO move return closer
+    if (isDead(marine)) {
+        return DEAD_PAY_AMOUNT;
+    }
+    if (marine.retired) {
+        return retiredAmount();
+    }
+    if (marine.yearsService == null) {
+        throw "Any marine should have the years of service set";
+    }
+    let result = marine.yearsService * 100 + bonusPackage.value;
+    if (!marine.awards.isEmpty()) {
+        result += 1000;
+    }
+    if (marine.awards.size() >= 3) {
+        result += 2000;
+    }
+    // HEAVY core logic here, business-rules ...
+    return result;
 }
 
 function isDead(marine) {
