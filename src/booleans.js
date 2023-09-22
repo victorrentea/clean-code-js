@@ -15,15 +15,21 @@ function redMethod(id, task) {
     bigUglyMethod(id, task);
 }
 
-function bigUglyMethod(storeId, task, cr323 = false) {
+function bigUglyMethod(storeId, task) {
+    cow();
+    donkey();
+}
+function bigUglyMethod323(storeId, task) {
+    cow();
+    console.log("Logic ONLY FOR MY use-case CR#323 : " + task);
+    donkey();
+}
+function cow() {
     console.log("Cow Logic 1 " + task + " and " + storeId);
     console.log(task);
     console.log("Cow Logic 3 " + task);
-
-    if (cr323) {
-        console.log("Logic ONLY FOR MY use-case CR#323 : " + task);
-    }
-
+}
+function donkey() {
     console.log("Donkey Logic 1 " + storeId);
     console.log("Donkey Logic 2 " + storeId);
     console.log("Donkey Logic 3 " + storeId);
@@ -32,5 +38,5 @@ function bigUglyMethod(storeId, task, cr323 = false) {
 
 function useCase323(id, task) {
     // TODO The shared called method must execute logic specific for my use-case #323
-    bigUglyMethod(id, task, true);
+    bigUglyMethod323(id, task, true);
 }
