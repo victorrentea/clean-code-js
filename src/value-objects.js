@@ -1,7 +1,7 @@
 function filterCarModels(criteria, models) {
     const results = [];
     for (let model of models) {
-        if (intervalsIntersect(new Interval(model.startProductionYear, model.endProductionYear), new Interval(criteria.startYear, criteria.endYear))) {
+        if (new Interval(model.startProductionYear, model.endProductionYear).intersects(new Interval(criteria.startYear, criteria.endYear))) {
             results.push(model);
         }
     }
@@ -9,14 +9,10 @@ function filterCarModels(criteria, models) {
     return results;
 }
 
-console.log(intervalsIntersect(new Interval(100, 200), new Interval(50, 250)));
-console.log(intervalsIntersect(new Interval(100, 200), new Interval(50, 250)));
+console.log(new Interval(100, 200).intersects(new Interval(50, 250)));
+console.log(new Interval(100, 200).intersects(new Interval(50, 250)));
 
 // "Missing Abstraction" - you are missing a data structure (class)
-function intervalsIntersect(interval1, interval2) {
-    return interval1.intersects(interval2);
-}
-
 class Interval {
     constructor(start, end) {
         this.start = start;
