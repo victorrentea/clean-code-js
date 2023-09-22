@@ -10,6 +10,15 @@ for (let string of strings) {
 
 function Obj() {
     this.x = 1;
+
+    setTimeout(function () {
+        console.log("timeout(function : " + this.x);
+    }, 100);
+
+    setTimeout(() => {
+        console.log("timeout(()=> : " + this.x);
+    }, 100);
+
     return {
         f: function () { // "function" creates its own "this" scope, different than the host func
             return this.x;

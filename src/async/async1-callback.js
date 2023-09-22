@@ -1,7 +1,9 @@
 import get from "request";
 import {writeFile} from "fs";
 
-get(
+// new XMLHttpRequest, $.http(, callback), $http(ng), fetch
+
+get( // callback hell
     "https://en.wikipedia.org/wiki/Robert_Cecil_Martin",
     (requestErr, response, body) => {
         if (requestErr) {
@@ -20,5 +22,12 @@ get(
         }
     }
 );
+// 1 get a token
+// 2 use the token to call API A
+// 3 open a modal dialog
+// 4 if YES then do a call to API B
+// 5 if success toaster.success ("Yeehaa!")
+
+
 
 
