@@ -1,26 +1,49 @@
-function bossLevel(tasks, cr323) {
-    let index = 0;
-    let taskCount = tasks.length;
+function bossStart(tasks) {
     console.log("Logic1");
-    let taskIds = [];
+    let taskIds = tasks.map(task => task.id); // FP ftw ❤️
+    //let total = tasks.map(task => task.id).reduce((a, b) => a + b, 0); // FP!!
+    // total+=task.id; // state change, not FP
+    // BUT aren't we hitting performance here? because we are iterating the array twice?
+    // from highschool/faculty we know that smart engineers are writing efficient code O(n) and not O(n^2)
+    // in practice: how many elements are in the list
+    // - millions? then we have a problem: where did they come from ? compared to NETWORK, for is nothing
+    // - thousands? you won't see a problem
+    // SO MEASURE if in doubt
+
+    // when you break a for {} into multiple loops, be careful about the ORDER OF OPERATIONS
+    return taskIds;
+}
+
+function bossEnd(cr323, tasks, taskIds) {
+    // taskIds.push(task.id); // stat change, not FP
+
+    if (cr323) { // TODO task = remove the boolean
+        for (let task of tasks) {
+            console.log("My Logic: " + task);
+        }
+    }
+    let index = 0;
+    for (let task of tasks) {
+        index++;
+        console.log("Audit task #" + index + ": " + task);
+    }
+    console.log("Logic6 " + tasks.length);
+    console.log("Task Ids: " + taskIds);
+    console.log("Logic8");
+}
+
+function bossLevel(tasks, cr323) {
+    let taskIds = bossStart(tasks);
+
     console.log("Logic3");
     for (let task of tasks) {
         console.log("Starting " + task);
         task.started = true;
-
-        taskIds.push(task.id); // stat change, not FP
-
-        if (cr323) { // TODO task = remove the boolean
-            console.log("My Logic: " + task);
-        }
-
-        index++;
-        console.log("Audit task #" + index + ": " + task);
     }
-    console.log("Logic6 " + taskCount);
-    console.log("Task Ids: " + taskIds);
-    console.log("Logic8");
-}function bossLevelNoFluff(tasks) {
+    bossEnd(cr323, tasks, taskIds);
+}
+
+function bossLevelNoFluff(tasks) {
     console.log("Logic1");
     console.log("Logic7 on fluff=false " + tasks);
     console.log("Logic8");

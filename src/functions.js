@@ -1,12 +1,31 @@
 
-function createMicrobrewery(name) {
-    const breweryName = name || "Hipster Brew Co."; // rewrite in ES6
+function createMicrobrewery(brewery = "Hipster Brew Co.") {
+    // name = name || "Hipster Brew Co.";
+    // const breweryName = name || "Hipster Brew Co."; // rewrite in ES6
     // ...
+    console.log(breweryName);
 }
 
 
-function createMenu(title, body, buttonText, cancellable) { // over 3 params ..
+
+// disableElements("el1","el2")
+// disableElements("el1","el2","el3")
+// function disableElements(...ids) {}
+
+// createMenu("title", "bod", "bt", true);
+createMenu({
+    body:"bod",
+    title:"title",
+    buttonText: "bt",
+    cancellable:true});
+// function createMenu(title, ...rest) { // over 3 params ..
+function createMenu({title, body, buttonText, cancellable}) { // over 3 params ..
+// function createMenu({title, body, buttonText, cancellable}) { // over 3 params ..
     // ...
+    if (cancellable) {
+        // console.log(`<button>${rest[1]}</button>`);
+        console.log(`<button>${buttonText}</button>`);
+    }
 }
 createMenu("title", "body", "but", true)
 // TODO #2 how to set default values to some of them? First idea: config.cancellable = config.cancelable || true;
