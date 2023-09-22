@@ -10,22 +10,25 @@ function computeTotalPrice(customer) {
     return totalPrice;
 }
 
+
+
 // if a function is PURE, then #2 and #3 are not possible
 export function statement(customer) {
-    let result = `Rental Record for ${customer.name}\n`;
-
-    const frequentRenterPoints = totalPoints(customer);
+    let result = formatHeader(customer.name);
 
     for (const rental of customer.rentals) {
         result += `\t${rental.movie.title}\t${calculatePrice(rental)}\n`;
     }
-    const totalPrice = computeTotalPrice(customer);
-
-    // add footer lines
-    result += `Amount owed is ${totalPrice}\n`;
-    result += `You earned ${frequentRenterPoints} frequent renter points\n`;
+    result += formatFooter(customer);
 
     return result;
+}
+function formatFooter(customer) {
+    return `Amount owed is ${computeTotalPrice(customer)}\n` +
+        `You earned ${totalPoints(customer)} frequent renter points\n`;
+}
+function formatHeader(customerName) {
+    return `Rental Record for ${customerName}\n`;
 }
 
 const totalPoints = customer => customer.rentals.map(calculateRenterPoints).reduce((a, b) => a + b, 0);
