@@ -15,13 +15,14 @@ function redMethod(id, task) {
     bigUglyMethod(id, task);
 }
 
-// Warning⚠️: this method might be called from multiple places in the codebase ...
-function bigUglyMethod(storeId, task) {
+function bigUglyMethod(storeId, task, cr323 = false) {
     console.log("Cow Logic 1 " + task + " and " + storeId);
     console.log(task);
     console.log("Cow Logic 3 " + task);
 
-    // console.log("Logic just for CR#323 : " + task);
+    if (cr323) {
+        console.log("Logic ONLY FOR MY use-case CR#323 : " + task);
+    }
 
     console.log("Donkey Logic 1 " + storeId);
     console.log("Donkey Logic 2 " + storeId);
@@ -31,5 +32,5 @@ function bigUglyMethod(storeId, task) {
 
 function useCase323(id, task) {
     // TODO The shared called method must execute logic specific for my use-case #323
-    bigUglyMethod(id, task);
+    bigUglyMethod(id, task, true);
 }
