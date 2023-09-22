@@ -1,13 +1,12 @@
 export function statement(customer) {
     let totalPrice = 0;
-    let frequentRenterPoints = 0;
     let result = `Rental Record for ${customer.name}\n`;
+
+    const frequentRenterPoints = totalPoints(customer);
+
     for (const rental of customer.rentals) {
         const price = calculatePrice(rental);
-        frequentRenterPoints += calculateRenterPoints(rental);
-
         result += `\t${rental.movie.title}\t${price}\n`;
-
         totalPrice += price;
     }
     // add footer lines
@@ -16,6 +15,8 @@ export function statement(customer) {
 
     return result;
 }
+
+const totalPoints = customer => customer.rentals.map(calculateRenterPoints).reduce((a, b) => a + b, 0);
 
 function calculateRenterPoints(rental) {
     let frequentRentalPoints = 1;
