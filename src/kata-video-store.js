@@ -14,10 +14,13 @@ function computeTotalPrice(customer) {
 
 // if a function is PURE, then #2 and #3 are not possible
 export function statement(customer) {
-    // violation of Single Level of Abstraction Principle (SLAb)
-    return `Rental Record for ${(customer.name)}\n`  // low-level => pull out from a function operating a higher level of abstraction
+    // OK of Single Level of Abstraction Principle (SLAb)
+    return formatHeader(customer)  // high-level
         + formatBody(customer.rentals) // high level
         + formatFooter(customer); // high level
+}
+function formatHeader(customer) {
+    return `Rental Record for ${(customer.name)}\n`;
 }
 
 function formatBody(rentals) {
