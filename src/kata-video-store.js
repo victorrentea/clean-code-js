@@ -1,5 +1,5 @@
 
-function statement(customer) {
+export function statement(customer) {
     let totalAmount = 0;
     let frequentRenterPoints = 0;
     let result = `Rental Record for ${customer.name}\n`;
@@ -41,27 +41,3 @@ function statement(customer) {
 
     return result;
 }
-
-const customer =
-    {
-        name: "martin",
-        rentals: [
-            { movie: { title: "Star Wars", code: "new" }, d: 6 },
-            { movie: { title: "Sofia", code: "childrens" }, d: 7 },
-            { movie: { title: "Inception", code: "regular" }, d: 5 }
-        ]
-    }
-;
-
-
-const customerStatement = statement(customer);
-console.log(customerStatement);
-
-const expected = `Rental Record for martin
-        Star Wars       18
-        Sofia   7.5
-        Inception       6.5
-Amount owed is 32
-You earned 4 frequent renter points`;
-console.log("-----");
-console.log(expected);

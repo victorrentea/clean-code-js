@@ -33,12 +33,13 @@ console.log(calculateOrderPrice("Chair-CHR 4", {"CHR": 5}));
 
 
 
+// BAD
 Array.prototype.diff = function diff(comparisonArray) {
     const hash = new Set(comparisonArray);
     return this.filter(elem => !hash.has(elem));
 };
 console.log([1,2,3].diff([1,2,4])); // [3]
-// INSTEAD:
+// GOOD:
 class SuperArray extends Array {
     diff(comparisonArray) {
         const hash = new Set(comparisonArray);
