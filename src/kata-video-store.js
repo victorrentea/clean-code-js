@@ -14,23 +14,22 @@ function computeTotalPrice(customer) {
 
 // if a function is PURE, then #2 and #3 are not possible
 export function statement(customer) {
-    let result = formatHeader(customer.name);
+    // violation of Single Level of Abstraction Principle (SLAb)
+    return `Rental Record for ${(customer.name)}\n`  // low-level => pull out from a function operating a higher level of abstraction
+        + formatBody(customer.rentals) // high level
+        + formatFooter(customer); // high level
+}
 
-    for (const rental of customer.rentals) {
-        result += `\t${rental.movie.title}\t${calculatePrice(rental)}\n`;
-    }
-    result += formatFooter(customer);
-
-    return result;
+function formatBody(rentals) {
+    return rentals.map(formatLine).join("");
+}
+function formatLine(rental) {
+    return `\t${rental.movie.title}\t${calculatePrice(rental)}\n`;
 }
 function formatFooter(customer) {
     return `Amount owed is ${computeTotalPrice(customer)}\n` +
         `You earned ${totalPoints(customer)} frequent renter points\n`;
 }
-function formatHeader(customerName) {
-    return `Rental Record for ${customerName}\n`;
-}
-
 const totalPoints = customer => customer.rentals.map(calculateRenterPoints).reduce((a, b) => a + b, 0);
 
 function calculateRenterPoints(rental) {
