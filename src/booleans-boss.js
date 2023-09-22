@@ -1,6 +1,6 @@
 function bossLevel(fluff, tasks, cr323) {
     let index = 0;
-    let j = tasks.length;
+    let taskCount = tasks.length;
     console.log("Logic1");
     let taskIds = [];
     if (fluff) {
@@ -18,7 +18,7 @@ function bossLevel(fluff, tasks, cr323) {
             index++;
             console.log("Audit task #" + index + ": " + task);
         }
-        console.log("Logic6 " + j);
+        console.log("Logic6 " + taskCount);
         console.log("Task Ids: " + taskIds);
     } else {
         console.log("Logic7 on fluff=false " + tasks);
