@@ -79,3 +79,9 @@ function calculatePrice(rental) {
     }
     return price;
 }
+
+
+
+
+
+// TODO create a Rental class and move calculatePrice() and calculateRenterPoints() there (OOP)
