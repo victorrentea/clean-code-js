@@ -8,7 +8,7 @@ function bossLevel(tasks, cr323) {
         console.log("Starting " + task);
         task.started = true;
 
-        taskIds.push(task.id);
+        taskIds.push(task.id); // stat change, not FP
 
         if (cr323) { // TODO task = remove the boolean
             console.log("My Logic: " + task);
