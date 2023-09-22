@@ -33,6 +33,14 @@ function bossEnd(cr323, tasks, taskIds) {
 }
 
 function betterName(tasks) {
+
+    // let total = 0;
+    // tasks.forEach(t => total += t.duration);
+
+    // FP!
+    // const total = tasks.map(t => t.duration).reduce((a, b) => a + b, 0);
+
+
     for (let task of tasks) {
         console.log("Starting " + task);
         task.started = true;
@@ -55,7 +63,9 @@ class Task {
     constructor(id, started) {
         this.id = id;
         this.started = started;
+        this.duration = 10;
     }
+
     toString = () => `Task(id=${this.id}, started=${this.started})`;
 }
 

@@ -25,6 +25,9 @@ console.log(new Interval(100, 200).intersects(new Interval(50, 250)));
 // "Missing Abstraction" - you are missing a data structure (class)
 class Interval {
     constructor(start, end) {
+        // if (start > end) {
+        //     throw new Error("Illegal interval")
+        // }
         this.start = start;
         this.end = end;
         // Object.freeze(this);
@@ -32,6 +35,18 @@ class Interval {
     intersects(other) { // OOP : behavior NEXT to state!
         return this.start <= other.end && other.start <= this.end;
     }
+    length() {
+        return this.end - this.start + 1;
+    }
+    isASingleYear() {
+        return this.start === this.end;
+    }
+    // method(ObjWith20Attrib) {} // NO
+    // save(beApi) {
+    //     // 10-20 logic
+    //     return beApi.save(this)
+    //         .catch(err=> {toaster.error(..)})
+    // }
 }
 
 class CarSearchCriteria {

@@ -4,12 +4,22 @@ for (let string of strings) {
     console.log("Element: " + string);
 }
 
+
 // TODO Build a Map of {x,y} points to colors "white", "red", "blue"; Enjoy .set, .has, .keys, .values, .entries, .forEach((k,v) .delete .size
 // const map = {{1,2}:"red"}
 
+function validate() {
+    console.log("unused");
+}
+Array.prototype.iCanDoThis = function () {
+    return "polluting global namespace: addind more functions to [], and [] are everywhere";
+}
+console.log(strings.iCanDoThis());
+eval("valid" +"ate()" );
 
 function Obj() {
     this.x = 1;
+    // const y  = 1;
 
     setTimeout(function () {
         console.log("timeout(function : " + this.x);
