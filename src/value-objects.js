@@ -14,13 +14,16 @@ console.log(intervalsIntersect(new Interval(100, 200), new Interval(50, 250)));
 
 // "Missing Abstraction" - you are missing a data structure (class)
 function intervalsIntersect(interval1, interval2) {
-    return interval1.start <= interval2.end && interval2.start <= interval1.end;
+    return interval1.intersects(interval2);
 }
 
 class Interval {
     constructor(start, end) {
         this.start = start;
         this.end = end;
+    }
+    intersects(other) { // OOP : behavior NEXT to state!
+        return this.start <= other.end && other.start <= this.end;
     }
 }
 
